@@ -1,0 +1,53 @@
+erDiagram
+    %% Observação: valores possíveis para BOOK_COPY.status -> available, damaged, lost
+
+    PUBLISHER ||--o{ BOOK : publishes
+    BOOK ||--o{ BOOK_COPY : has
+    AUTHOR ||--o{ BOOK_AUTHOR : writes
+    BOOK ||--o{ BOOK_AUTHOR : has
+    USER ||--o{ LOAN : borrows
+    BOOK_COPY ||--o{ LOAN : loaned_in
+    OPERATOR ||--o{ LOAN : processes
+    LOCATION ||--o{ USER : lives_in
+    PUBLISHER }o--o{ LOCATION : located_in
+
+    PUBLISHER {
+        int publisher_id PK
+        string name
+        string cnpj
+        string city
+    }
+    AUTHOR {
+        int author_id PK
+        string name
+        date birth_date
+    }
+    BOOK {
+        int book_id PK
+        string title
+        string isbn
+        int publisher_id FK
+        int year
+        string genre
+    }
+    BOOK_AUTHOR {
+        int book_id FK
+        int author_id FK
+    }
+    BOOK_COPY {
+        int copy_id PK
+        int book_id FK
+        string barcode
+        date acquisition_date
+        string status
+    }
+    USER {
+        int user_id PK
+        string name
+        string cpf
+        string email
+        string phone
+        string city
+        date member_since
+    }
+    OPE
